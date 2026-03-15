@@ -7,6 +7,9 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::middleware(['auth'])->group(function(){
-    Route::get('/dashboard', action: [DashboardController::class, 'index'])->name('dashboard');
-}) ; 
+Auth::routes();
+
+Route::middleware(['auth'])->group(function () {
+    Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+    Route::view('/map', 'map')->name('map');
+});
